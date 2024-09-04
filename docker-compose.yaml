@@ -1,0 +1,46 @@
+services:
+    hello-service-alpha:
+        image: raghugannaram/hello-service:1.0.0
+        container_name: hello-service-alpha
+        environment:
+            - SERVICE_NAME=alpha
+            - LOG_LEVEL=debug
+            - TZ=Asia/Kolkata
+        ports:
+            - "9001:5000"
+        networks:
+            - hello-service-network
+        volumes:
+            - ./logs:/app/logs
+
+    hello-service-beta:
+        image: raghugannaram/hello-service:1.0.0
+        container_name: hello-service-beta
+        environment:
+            - SERVICE_NAME=beta
+            - LOG_LEVEL=debug
+            - TZ=Asia/Kolkata
+        ports:
+            - "9002:5000"
+        networks:
+            - hello-service-network
+        volumes:
+            - ./logs:/app/logs
+
+    hello-service-gamma:
+        image: raghugannaram/hello-service:1.0.0
+        container_name: hello-service-gamma
+        environment:
+            - SERVICE_NAME=gamma
+            - LOG_LEVEL=debug
+            - TZ=Asia/Kolkata
+        ports:
+            - "9003:5000"
+        networks:
+            - hello-service-network
+        volumes:
+            - ./logs:/app/logs
+
+networks:
+    hello-service-network:
+        driver: bridge
